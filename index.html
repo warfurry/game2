@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+/*             /* display: flex;
+            align-items: center;
+            justify-content: center; */
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            color: #333;
+        }
+
+        .login-form,
+        .form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input,
+        .guessField {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group input[type="submit"],
+        .guessSubmit {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:hover,
+        .guessSubmit:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form class="login-form" action="login_process.php" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login">
+            </div>
+        </form>
+    </div>
+
+    <p></p>
+    <br />
+
+    <h1>Guess The Number</h1>
+    <p>
+        We have selected a random number between 1 - 10. See if you can guess it.
+    </p>
+    <div class="form">
+        <label for="guessField">Enter a guess:</label>
+        <input type="text" id="guessField" class="guessField">
+        <input type="submit" value="Submit guess" class="guessSubmit" id="submitguess">
+    </div>
+
+    <p></p>
+    <br />
+
+    <img id="dance" src="./images/pause.png">
+    
+    <p></p>
+    <br />
+
+    <a href="home.html">prev &lt;&lt;</a>
+
+    <script>
+        // Generate a Random Number
+        let y = Math.floor(Math.random() * 10 + 1);
+        // Counting the number of guesses made for correct Guess
+        let guess = 1;
+
+        console.log('Actual: ' + y);
+
+        document.getElementById("submitguess").onclick = function () {
+            // Number guessed by the user
+            let x = document.getElementById("guessField").value;
+
+            console.log('Guess: ' + x);
+
+            if (x == y) {
+                dance();
+                alert("CONGRATULATIONS!!! YOU GUESSED IT RIGHT IN " + guess + " GUESS ");
+            } else if (x > y) {
+                guess++;
+                alert("OOPS SORRY!! TRY A SMALLER NUMBER");
+            } else {
+                guess++;
+                alert("OOPS SORRY!! TRY A GREATER NUMBER");
+            }
+        }
+
+        // Function for the dance image
+        function dance() {
+            var image = document.getElementById('dance');
+            image.src = "./images/dance.gif";
+        }
+
+        function dance_OLD() {
+            var image = document.getElementById('dance');
+            var a = parseInt(document.getElementById("num1").value);
+            var b = parseInt(document.getElementById("num2").value);
+            var x = a + b;
+
+            if (x >= 100) {
+                image.src = "images/dancing.gif";
+
+            } else {
+                image.src = "images/pause.png";
+            }
+
+        } 
+    </script>
+
+</body>
+
+</html>
